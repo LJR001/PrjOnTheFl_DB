@@ -207,10 +207,53 @@ namespace PrjOnTheFl_DB
                         break;
 
                     case 7:
+                        using (SqlDataReader leitor = cmd.ExecuteReader())
+                        {
 
+                            while (leitor.Read())
+                            {
+                                Console.WriteLine("\nCADASTRO DE ITENS ENCONTRADO!\n");
+
+                                Console.Write(" Codigo de item de venda: {0}", leitor.GetInt32(0));
+                                Console.Write("\n Codigo de passagem: {0} ", leitor.GetString(1));
+                                Console.Write("\n Codigo da venda: {0} ", leitor.GetInt32(2));
+                                Console.Write("\n Assentos Valor unitario: {0} ", leitor.GetFloat(3));
+                                
+
+                                Console.WriteLine("\nPressione Enter para continuar...");
+
+                                retorna = true;
+                                Console.ReadKey();
+
+                                Console.Clear();
+                            }
+
+                        }
                         break;
+                    case 8:
+                        using (SqlDataReader leitor = cmd.ExecuteReader())
+                        {
+
+                            while (leitor.Read())
+                            {
+                                Console.WriteLine("\nCADASTRO DE VENDAS ENCONTRADO!\n");
+
+                                Console.Write(" Codigo de venda: {0}", leitor.GetInt32(0));
+                                Console.Write("\n Codigo de passagem: {0} ", leitor.GetString(1));
+                                Console.Write("\n Data da venda: {0} ", leitor.GetDateTime(2).ToString("dd/MM/yyyy"));
+                                Console.Write("\n Assentos Valor toatal: {0} ", leitor.GetFloat(3));
 
 
+                                Console.WriteLine("\nPressione Enter para continuar...");
+
+                                retorna = true;
+                                Console.ReadKey();
+
+                                Console.Clear();
+                            }
+
+                        }
+                        break;
 
                     case 0:
                         using (SqlDataReader leitor = cmd.ExecuteReader())
@@ -404,7 +447,7 @@ namespace PrjOnTheFl_DB
 
         public string BuscaInscricao(string Passagem)
         {
-            string queryString = $"SELECT IdPAssagem FROM Passagem WHERE ID = '{Passagem}';";
+            string queryString = $"SELECT IdVoo FROM Passagem WHERE ID = '{Passagem}';";
 
             string voo = "";
             string aeronave = "";

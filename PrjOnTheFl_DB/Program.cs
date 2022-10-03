@@ -101,7 +101,7 @@ namespace PrjOnTheFl_DB
             Console.WriteLine(" Opção 2 : Cadastrar companhia aerea");
             Console.WriteLine(" Opção 3 : Cadastrar aeronave");
             Console.WriteLine(" Opção 4 : Cadastro de voo");
-            Console.WriteLine(" Opção 5 : Cadastrar venda de passagem");
+            Console.WriteLine(" Opção 5 : Fazer venda de passagem");
             Console.WriteLine(" Opção 6 : Voltar ao Menu Iniciar");
             Console.WriteLine(" Opção 0 : Sair");
 
@@ -144,9 +144,9 @@ namespace PrjOnTheFl_DB
                         break;
 
                     case 5:
-                        Console.WriteLine(" Cadastrar venda de passagem");
+                        Console.WriteLine(" Fazer venda de passagem");
                         Console.Clear();
-                       // venda.Cadastrar();
+                        venda.FazerVenda();
                         break;
                     case 6:
                         Console.WriteLine(" Menu Inicial");
@@ -316,7 +316,7 @@ namespace PrjOnTheFl_DB
                     case 5:
                         Console.WriteLine("Editar passagem");
                         Console.Clear();
-                      //  passagemVoo.AlterarPrecoPassagem();
+                        passagemVoo.AlteraPassagem();
                         break;
 
                     case 6:
@@ -388,7 +388,7 @@ namespace PrjOnTheFl_DB
                     case 3:
                         Console.WriteLine("Imprime aeronave");
                         Console.Clear();
-                        // aeronave.ImprimeAeronaves();
+                        aeronave.ImprimerAeronaves();
                         break;
 
                     case 4:
@@ -400,13 +400,13 @@ namespace PrjOnTheFl_DB
                     case 5:
                         Console.WriteLine("Imprime passagem");
                         Console.Clear();
-                        passagemVoo.NevagarPassagem();
+                        passagemVoo.ImprimirPassagens(); ;
                         break;
 
                     case 6:
                         Console.WriteLine("Imprime venda de passagem");
                         Console.Clear();
-                        //venda.Imprimir();
+                        venda.ImprimeVendas();
                         break;
 
                     case 7:

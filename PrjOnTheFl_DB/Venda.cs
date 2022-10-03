@@ -40,7 +40,7 @@ namespace PrjOnTheFl_DB
         }
 
         
-        public void CadastrarVenda()
+        public void FazerVenda()
         {
             Console.WriteLine("VENDA DE PASSAGENS\nDigite 0 para sair");
             DataVenda = DateTime.Now.ToString("dd/MM/yyyy");
@@ -161,10 +161,18 @@ namespace PrjOnTheFl_DB
     
         public void ImprimeVendas()
         {
-           // conexaoBD.ReadVenda();
+            int opc = 8;
+
+
+            Console.WriteLine(">>> Lista de Venda slecionados <<<\n");
+
+
+            string query = $"SELECT IdVenda,cpfPassageiro,data_venda,Valor_Total FROM Venda";
+
+            conexaoBD.Select(query, opc);
         }
         //Imprimi uma venda em específico
-        public void ImprimeVenda()
+        public void LocalizarVenda()
         {
         //    string id;
         //    int idVenda;

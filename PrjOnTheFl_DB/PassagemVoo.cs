@@ -83,7 +83,7 @@ namespace PrjOnTheFl_DB
                 //string texto = $"{ToString()}\n";
                 //File.AppendAllText(caminho, texto);
 
-                string query = $"INSERT INTO Passagem(IdPassagem,InsAeronave,Data_Voo,Valor,Situacao)" + $"VALUES('{Id}','{InsAeronave}','{DataCadastro}','{Valor}','{Situacao}')";
+                string query = $"INSERT INTO Passagem(IdPassagem,IdVoo,InsAeronave,Data_Voo,Valor,Situacao)" + $"VALUES('{Id}','{idVoo}','{InsAeronave}','{DataCadastro}','{Valor}','{Situacao}')";
 
                 conexaoBD.Insert(query);
 
@@ -97,16 +97,19 @@ namespace PrjOnTheFl_DB
             Console.WriteLine(" Digite a opção: \n" +
                " 1 - Ver passagens\n" +
                " 2 - Alterar preço da passagem\n" +
-               " 3 - Gerar uma passagem");
+               " 3 - Listar passagem");
 
             int opc = int.Parse(Console.ReadLine());
             switch (opc)
             {
                 case 1:
-                    NevagarPassagem();
+                    ImprimirPassagens();
                     break;
                 case 2:
                     AlteraPassagem();
+                    break;
+                case 3:
+                    LocalPassagem();
                     break;
 
                 default: break;
@@ -323,68 +326,7 @@ namespace PrjOnTheFl_DB
             } while ((situacao != 'V') && (situacao != 'R') && (situacao != 'L'));
         }
 
-        public void NevagarPassagem()
-        {
-            //string[] lines = File.ReadAllLines(Caminho);
-            //List<string> passagem = new();
-
-            //Console.WriteLine(" Digite o codigo do voo (V000): ");
-            //string codVoo = Console.ReadLine();
-
-            //for (int i = 0; i < lines.Length - 1; i++)
-            //{
-            //    // Console.WriteLine(lines[i]);
-            //    //Console.ReadKey();
-            //    //Verifica passagens do voo
-            //    if (lines[i].Substring(7, 4).Contains(codVoo))
-            //        passagem.Add(lines[i]);
-            //}
-
-            ////Laço para navegar nos cadastros das Companhias
-            //for (int i = 0; i < passagem.Count; i++)
-            //{
-            //    string op;
-            //    do
-            //    {
-            //        Console.Clear();
-            //        Console.WriteLine(">>> Lista de Passagem <<<\nDigite para navegar:\n[1] Próximo Cadasatro\n[2] Cadastro Anterior" +
-            //            "\n[3] Último cadastro\n[4] Voltar ao Início\n[0] Sair\n");
-
-            //        Console.WriteLine($"Cadastro [{i + 1}] de [{passagem.Count}]");
-            //        //Imprimi o primeiro da lista 
-            //        LocalPassagem(Caminho, passagem[i].Substring(0, 5));
-
-            //        Console.Write("Opção: ");
-            //        op = Console.ReadLine();
-
-            //        if (op != "0" && op != "1" && op != "2" && op != "3" && op != "4")
-            //        {
-            //            Console.WriteLine("Opção inválida!");
-            //            Thread.Sleep(2000);
-            //        }
-            //        //Sai do método
-            //        else if (op.Contains("0"))
-            //            return;
-
-            //        //Volta no Cadastro Anterior
-            //        else if (op.Contains("2"))
-            //            if (i == 0)
-            //                i = 0;
-            //            else
-            //                i--;
-
-            //        //Vai para o fim da lista
-            //        else if (op.Contains("3"))
-            //            i = passagem.Count - 1;
-
-            //        //Volta para o inicio da lista
-            //        else if (op.Contains("4"))
-            //            i = 0;
-            //        //Vai para o próximo da lista    
-            //    } while (op != "1");
-
-            //}
-        }
+       
 
 
 

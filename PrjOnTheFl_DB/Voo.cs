@@ -276,8 +276,7 @@ namespace PrjOnTheFl_DB
                         case 1:
                             Console.Write(" Digite a nova destino: ");
                             string novaiata = Console.ReadLine();
-                            //if (!ColetaDestino())
-                            //    return;
+                           
                             string queryupdate = $"UPDATE Voo SET Destino = '{novaiata}' WHERE Id ='{IdVoo}'";
                             conexaoBD.Update(queryupdate);
 

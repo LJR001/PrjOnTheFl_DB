@@ -41,7 +41,7 @@ namespace PrjOnTheFl_DB
             this.IdVenda = idVenda;
             this.IdPassagem = passagemVooId;
 
-            string query = $"INSERT INTO ItemVenda (codPAssagem, cpdVenda, ValorTotal) VALUES ('{IdPassagem}', '{IdVenda}', '{ValorUnitario}');"; 
+            string query = $"INSERT INTO ItemVenda (codPAssagem, codVenda, Valor_Total) VALUES ('{IdPassagem}', '{IdVenda}', '{ValorUnitario}');"; 
             conexaoBD.Insert(query);
         }
         //Altera o voo da venda
@@ -57,9 +57,17 @@ namespace PrjOnTheFl_DB
             conexaoBD.BuscaValor(queryPas);
         }
         //Imprimi o item da venda
-        public void ImprimiItemVenda(int id)
+        public void ImprimiItemVenda()
         {
-           // conexaoBD.ReadItemVenda(id);
+            int opc = 7;
+
+
+            Console.WriteLine(">>> Lista de Itens slecionados <<<\n");
+
+
+            string query = $"SELECT IdItem,codPAssagem,codVenda,Valor_Total FROM ItemVenda";
+
+            conexaoBD.Select(query, opc);
         }
 
     }
