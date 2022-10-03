@@ -17,7 +17,7 @@ namespace PrjOnTheFl_DB
         // public DateTime MyProperty { get; set; }
 
         public DateTime DataCadastro { get; set; }
-        public string Valor { get; set; }
+        public double Valor { get; set; }
         public char Situacao { get; set; }
 
         ConexaoBanco conexaoBD = new ConexaoBanco();
@@ -70,7 +70,7 @@ namespace PrjOnTheFl_DB
                 string IdPassagem = $"{idUnitario}{idVoo}";
 
                 Id = IdPassagem;
-                Valor = valorPas.ToString("0000,00");
+                Valor = valorPas;
 
                 // Data_Voo = BuscaEspecifica(idAeronave, "Inscricao", "Aeronave", "Capacidade");
 
@@ -115,9 +115,9 @@ namespace PrjOnTheFl_DB
 
         public void LocalPassagem()
         {
-            int opc = 1;
+            int opc = 6;
             string idPessoa;
-            bool verifica;
+            //bool verifica;
             Console.WriteLine(">>> LOCALIZA DADOS DE PASSAGEM <<<\nPara sair digite 's'.\n");
             Console.Write("Digite o codigo da passagem: ");
 

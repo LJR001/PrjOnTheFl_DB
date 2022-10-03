@@ -10,53 +10,56 @@ namespace PrjOnTheFl_DB
 {
     internal class ItemVenda
     {
-        public int Id { get; set; }
-        public string IdPassagem { get; set; }
-        public double ValorUnitario { get; set; }
-        public int IdVenda { get; set; }
+        private int Id { get; set; }
+        private double ValorUnitario { get; set; }
+        private int IdVenda { get; set; }
+        private string IdPassagem { get; set; }
 
         ConexaoBanco conexaoBD = new ConexaoBanco();
 
         public ItemVenda()
         {
         }
-        public override string ToString()
+
+        //Gera Id 
+        public void GeraId()
         {
-            return $"{Id}{IdPassagem}{ValorUnitario}{IdVenda}";
-        }
-        public void CadastraItemVenda(int idVenda, string idPassagem)
-        {
-            ValorUnitario = conexaoBD.GetValor(idPassagem);
-            IdVenda = idVenda;
-            IdPassagem = idPassagem;
-            string query = $"INSERT INTO ItemVenda (CodPassagem,codVEnda, Valor_Unitario,) VALUES ('{IdVenda}', '{IdPassagem}', '{ValorUnitario}');";
-            conexaoBD.Insert(query);
-            ComprarItemVenda();
-        }
-        public string ComprarItemVenda()
-        {
-            int cont = 0;
-            double valortotal = 0.0;
-            valortotal += ValorUnitario;
-            do
+            for (int i = 1; i <= 999; i++)
             {
-                cont++;
-                Console.Clear();
-                Console.WriteLine("Compra realizada com sucesso!");
-                Console.WriteLine("Voce comprou " + cont + " Passagens");
-                Console.WriteLine("Deseja comprar novamente (s/n)?");
-                string op = Console.ReadLine().ToLower();
-                if (op != "s" && op != "n")
-                    Console.WriteLine("Insira uma resposta valida! (s/n)");
-                if (op == "n")
+                if (!conexaoBD.Verificar(i.ToString(), "IdItem", "ItemVenda"))
+                {
+                    Id = i;
                     break;
-            } while (cont < 4);
-            if (cont == 4)
-            {
-                Console.WriteLine("Limite de passagens atingindo!\nPressione enter para continuar");
-                Console.ReadKey();
+                }
             }
-            return valortotal.ToString("0000000");
+        }
+        //Gera a venda do item
+        public void GerarItem(int idVenda, string passagemVooId)
+        {
+
+            this.ValorUnitario = conexaoBD.BuscaValor(passagemVooId);
+            this.IdVenda = idVenda;
+            this.IdPassagem = passagemVooId;
+
+            string query = $"INSERT INTO ItemVenda (codPAssagem, cpdVenda, ValorTotal) VALUES ('{IdPassagem}', '{IdVenda}', '{ValorUnitario}');"; 
+            conexaoBD.Insert(query);
+        }
+        //Altera o voo da venda
+        public void AlteraPassagem(int idItem, string Passagem)
+        {
+            
+            string queryItem = $"UPDATE ItemVenda SET codPassagem = '{Passagem}' WHERE IdItem = {idItem}";
+            conexaoBD.Update(queryItem);
+
+            
+            this.ValorUnitario = conexaoBD.BuscaValor(Passagem);
+            string queryPas = $"UPDATE ItemVenda SET Valor_Unitario = '{ValorUnitario}' WHERE codPassagem = {Passagem}";
+            conexaoBD.BuscaValor(queryPas);
+        }
+        //Imprimi o item da venda
+        public void ImprimiItemVenda(int id)
+        {
+           // conexaoBD.ReadItemVenda(id);
         }
 
     }

@@ -146,7 +146,7 @@ namespace PrjOnTheFl_DB
                     case 5:
                         Console.WriteLine(" Cadastrar venda de passagem");
                         Console.Clear();
-                        venda.Cadastrar();
+                       // venda.Cadastrar();
                         break;
                     case 6:
                         Console.WriteLine(" Menu Inicial");
@@ -215,7 +215,7 @@ namespace PrjOnTheFl_DB
                     case 3:
                         Console.WriteLine("Localizar aeronave");
                         Console.Clear();
-                        // aeronave.ImprimeAeronaves();
+                         aeronave.LocalizaAeronave();
                         break;
 
                     case 4:
@@ -224,16 +224,16 @@ namespace PrjOnTheFl_DB
                         voo.LocalizaVoo();
                         break;
 
-                    //case 5:
-                    //    Console.WriteLine("Localizar passagem");
-                    //    Console.Clear();
-                    //    passagemVoo.NevagarPassagem();
-                    //    break;
+                    case 5:
+                        Console.WriteLine("Localizar passagem");
+                        Console.Clear();
+                        passagemVoo.LocalPassagem();
+                        break;
 
                     case 6:
                         Console.WriteLine("Localizar venda de passagem");
                         Console.Clear();
-                        venda.Localizar();
+                       // venda.Localizar();
                         break;
 
                     case 7:
@@ -406,7 +406,7 @@ namespace PrjOnTheFl_DB
                     case 6:
                         Console.WriteLine("Imprime venda de passagem");
                         Console.Clear();
-                        venda.Imprimir();
+                        //venda.Imprimir();
                         break;
 
                     case 7:

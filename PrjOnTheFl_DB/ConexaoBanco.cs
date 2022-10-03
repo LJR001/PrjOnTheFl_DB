@@ -188,13 +188,12 @@ namespace PrjOnTheFl_DB
                             {
                                 Console.WriteLine("\nCADASTRO DE PASSAGEM ENCONTRADO!\n");
 
-                                Console.Write(" Id: {0}", leitor.GetString(0));
-                                Console.Write("\n InsAeronave: {0} ", leitor.GetString(1));
-                                Console.Write("\n Destino: {0} ", leitor.GetString(2));
-                                Console.Write("\n Assentos ocupados: {0} ", leitor.GetInt32(3));
-                                Console.Write("\n Data Cadastro: {0} ", leitor.GetDateTime(4).ToString("dd/MM/yyyy"));
-                                Console.Write("\n Ultima compra: {0} ", leitor.GetDateTime(5).ToString("dd/MM/yyyy"));
-                                Console.Write("\n Situação: {0} ", leitor.GetString(6));
+                                Console.Write(" Codigo da Passagem: {0}", leitor.GetString(0));
+                                Console.Write("\n Inscricão da aeronave: {0} ", leitor.GetString(1));
+                                Console.Write("\n Destino: {0} ", leitor.GetDateTime(2).ToString("dd/MM/yyyy"));
+                                Console.Write("\n Assentos ocupados: {0} ", leitor.GetDouble(3));
+                                Console.Write("\n Data Cadastro: {0} ", leitor.GetString(4));
+                                
 
                                 Console.WriteLine("\nPressione Enter para continuar...");
 
@@ -376,9 +375,9 @@ namespace PrjOnTheFl_DB
             }
             return retorna;
         }
-        public double GetValor(string IdPassagemVoo)
+        public double BuscaValor(string Passagem)
         {
-            string queryString = $"SELECT ID, IDVoo, DataUltimaOperacao, Valor, Situacao FROM PassagemVoo WHERE ID = '{IdPassagemVoo}';";
+            string queryString = $"SELECT IdPAssagem, Data_Voo, Valor, Situacao FROM PassagemVoo WHERE ID = '{Passagem}';";
             double valor = 0;
             try
             {
@@ -403,7 +402,162 @@ namespace PrjOnTheFl_DB
             }
         }
 
+        public string BuscaInscricao(string Passagem)
+        {
+            string queryString = $"SELECT IdPAssagem FROM Passagem WHERE ID = '{Passagem}';";
 
+            string voo = "";
+            string aeronave = "";
+            try
+            {
+                SqlCommand cmd = new SqlCommand(queryString, Conexaosql);
+
+                Conexaosql.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        voo = reader.GetString(0);
+                    }
+                }
+                Conexaosql.Close();
+
+            }
+            catch (Exception e)
+            {
+                Conexaosql.Close();
+
+            
+                Console.WriteLine($"Erro de acesso ao banco!!!\n{e.Message}");
+                Console.WriteLine("Pressione Enter para continuar....");
+                Console.ReadKey();
+                return "";
+            }
+
+            string queryString1 = $"SELECT insAeronave FROM Voo WHERE ID = '{voo}';";
+
+            try
+            {
+                SqlCommand command = new SqlCommand(queryString1, Conexaosql);
+
+                Conexaosql.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        aeronave = reader.GetString(0);
+                    }
+                }
+                Conexaosql.Close();
+                return aeronave;
+            }
+            catch (Exception e)
+            {
+                Conexaosql.Close();
+                Console.WriteLine($"Erro ao acessar o Banco de Dados!!!\n{e.Message}");
+                Console.WriteLine("Pressione Enter para continuar....");
+                Console.ReadKey();
+                return "";
+            }
+
+        }
+
+        public int BuscarinsCapacidade(string inscricao)
+        {
+            string queryString = $"SELECT SELECT Inscricao, CNPJ,Capacidade, data_Cadastro, Ultima_Venda, Situacao FROM Aeronave WHERE Inscricao WHERE Inscricao = '{inscricao}';";
+
+            int capacidade = 0;
+
+            try
+            {
+                SqlCommand command = new SqlCommand(queryString, Conexaosql);
+
+                Conexaosql.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        capacidade = reader.GetInt32(2);
+                    }
+                }
+                Conexaosql.Close();
+                return capacidade;
+            }
+            catch (Exception e)
+            {
+                Conexaosql.Close();
+                Console.WriteLine($"Erro ao acessar o Banco de Dados!!!\n{e.Message}");
+                Console.WriteLine("Tecle Enter para continuar....");
+                Console.ReadKey();
+                return 0;
+            }
+        }
+
+        public string BuscarVoo(string idPassagem)
+        {
+            string queryString = $"SELECT insAeronave FROM Voo WHERE Id = '{idPassagem}';";
+
+            string valor = "";
+
+            try
+            {
+                SqlCommand command = new SqlCommand(queryString, Conexaosql);
+
+                Conexaosql.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        valor = reader.GetString(0);
+                    }
+                }
+                Conexaosql.Close();
+                return valor;
+            }
+            catch (Exception e)
+            {
+                Conexaosql.Close();
+                Console.WriteLine($"Erro ao acessar o Banco de Dados!!!\n{e.Message}");
+                Console.WriteLine("Tecle Enter para continuar....");
+                Console.ReadKey();
+                return "";
+            }
+        }
+        public int GetAssentosOcupados(string voo)
+        {
+            string queryString = $"SELECT Id, Assentos_Ocupados FROM Voo WHERE Id = '{voo}';";
+
+            int valor = 0;
+
+            try
+            {
+                SqlCommand command = new SqlCommand(queryString, Conexaosql);
+
+                Conexaosql.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        valor = reader.GetInt32(0);
+                    }
+                }
+                Conexaosql.Close();
+                return valor;
+            }
+            catch (Exception e)
+            {
+                Conexaosql.Close();
+                Console.WriteLine($"Erro ao acessar o Banco de Dados!!!\n{e.Message}");
+                Console.WriteLine("Tecle Enter para continuar....");
+                Console.ReadKey();
+                return 0;
+            }
+        }
 
     }
 }

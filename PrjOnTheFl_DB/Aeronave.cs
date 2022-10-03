@@ -125,21 +125,21 @@ namespace PrjOnTheFl_DB
         }
         public void ImprimeAeronave(string caminho, string inscricao)
         {
-            foreach (string line in File.ReadLines(caminho))
-            {
-                if (line.Contains(inscricao))
-                {
-                    Console.WriteLine($"\nInscrição: {line.Substring(0, 2)}-{line.Substring(2, 3)}");
-                    Console.WriteLine($"Capacidade: {line.Substring(5, 3)}");
-                    Console.WriteLine($"Assentos ocupados: {line.Substring(8, 3)}");
-                    Console.WriteLine($"Ultima venda: {line.Substring(11, 2)}/{line.Substring(13, 2)}/{line.Substring(15, 4)}");
-                    Console.WriteLine($"Data do Cadastro: {line.Substring(19, 2)}/{line.Substring(21, 2)}/{line.Substring(23, 4)}");
-                    if (line.Substring(27, 1).Contains("A"))
-                        Console.WriteLine($"Situação: Ativo");
-                    else
-                        Console.WriteLine($"Situação: Inativo");
-                }
-            }
+            //foreach (string line in File.ReadLines(caminho))
+            //{
+            //    if (line.Contains(inscricao))
+            //    {
+            //        Console.WriteLine($"\nInscrição: {line.Substring(0, 2)}-{line.Substring(2, 3)}");
+            //        Console.WriteLine($"Capacidade: {line.Substring(5, 3)}");
+            //        Console.WriteLine($"Assentos ocupados: {line.Substring(8, 3)}");
+            //        Console.WriteLine($"Ultima venda: {line.Substring(11, 2)}/{line.Substring(13, 2)}/{line.Substring(15, 4)}");
+            //        Console.WriteLine($"Data do Cadastro: {line.Substring(19, 2)}/{line.Substring(21, 2)}/{line.Substring(23, 4)}");
+            //        if (line.Substring(27, 1).Contains("A"))
+            //            Console.WriteLine($"Situação: Ativo");
+            //        else
+            //            Console.WriteLine($"Situação: Inativo");
+            //    }
+            //}
         }
         public void ImprimerAeronaves()
         {
