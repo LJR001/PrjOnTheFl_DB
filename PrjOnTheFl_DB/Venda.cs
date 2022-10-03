@@ -103,7 +103,7 @@ namespace PrjOnTheFl_DB
                
                 string voo = conexaoBD.BuscarVoo(idPassagem);
              
-               int assento = conexaoBD.GetAssentosOcupados(voo);
+               int assento = conexaoBD.BuscarOcupacao(voo);
 
                 if (assento <= capacidade)
                 {

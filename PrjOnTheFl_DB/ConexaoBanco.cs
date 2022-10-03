@@ -527,7 +527,7 @@ namespace PrjOnTheFl_DB
                 return "";
             }
         }
-        public int GetAssentosOcupados(string voo)
+        public int BuscarOcupacao(string voo)
         {
             string queryString = $"SELECT Id, Assentos_Ocupados FROM Voo WHERE Id = '{voo}';";
 
