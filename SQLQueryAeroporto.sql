@@ -74,21 +74,24 @@ CREATE TABLE Voo(
 
 CREATE TABLE Passagem(
 	IdPAssagem varchar(15) Not null,
+	IdVoo varchar(5) Not null ,
 	InsAeronave varchar(6) Not null,
 	Data_Voo varchar(20) Not null, 
 	Valor decimal(4,2) Not null,
 	Situacao char(1)
 
 	CONSTRAINT Cod_Passagem PRIMARY KEY (IdPassagem),
+	CONSTRAINT FK_Cod_VooPassagem FOREIGN KEY (IdVoo) REFERENCES Voo(Id),
 	CONSTRAINT FK_AeronavePassagem FOREIGN KEY (InsAeronave)REFERENCES Aeronave(Inscricao)
 
 );
+
  
 CREATE TABLE Venda (
 	IdVenda int IDENTITY not null,
 	cpfPassageiro varchar(11) Not null,
 	Data_venda Date,
-	Valor_Total decimal(5,2),
+	Valor_Total float,
 
 	CONSTRAINT Id_Venda PRIMARY KEY (IdVenda),
 	CONSTRAINT FK_PassageiroVenda FOREIGN KEY (cpfPassageiro) REFERENCES Passageiro(CPF)
@@ -99,7 +102,7 @@ CREATE TABLE ItemVenda(
 	IdItem int IDENTITY not null,
 	codPassagem varchar(15) Not null,
 	codVenda int Not null,
-	Valor_Unitario decimal(4,2) Not null,
+	Valor_Unitario float Not null,
 
 	CONSTRAINT Id_Item PRIMARY KEY(IdItem),
 	CONSTRAINT FK_PassagemItem FOREIGN KEY (codPassagem) REFERENCES Passagem(IdPassagem),
@@ -107,6 +110,8 @@ CREATE TABLE ItemVenda(
 
 );
 
-insert into IATA(Sigla) values ('BSB'),('CGH'),('GIG'),('SSA'),('FLN'),('POA'),('VCP'),('REC'),('CWB'),('BEL'),('VIX'),('SDU'),('CGB'),('CGR'),('FOR'),('MCP'),('MGF'),('GYN'),('NVT'),('MAO'),('NAT'),('BPS'),('MCZ'),('PMW'),('SLZ'),('GRU'),('LDB'),('PVH'),('RBR'),('JOI'),('UDI'),('CXJ'),('IGU'),('THE'),('AJU'),('JPA'),('PNZ'),('CNF'),('BVB'),('CPV'),('STM'),('IOS'),('JDO'),('IMP'),('XAP'),('MAB'),('CZS'),('PPB'),('CFB'),('FEN'),('JTC'),('MOC');
 
+
+
+insert into IATA(Sigla) values ('BSB'),('CGH'),('GIG'),('SSA'),('FLN'),('POA'),('VCP'),('REC'),('CWB'),('BEL'),('VIX'),('SDU'),('CGB'),('CGR'),('FOR'),('MCP'),('MGF'),('GYN'),('NVT'),('MAO'),('NAT'),('BPS'),('MCZ'),('PMW'),('SLZ'),('GRU'),('LDB'),('PVH'),('RBR'),('JOI'),('UDI'),('CXJ'),('IGU'),('THE'),('AJU'),('JPA'),('PNZ'),('CNF'),('BVB'),('CPV'),('STM'),('IOS'),('JDO'),('IMP'),('XAP'),('MAB'),('CZS'),('PPB'),('CFB'),('FEN'),('JTC'),('MOC');
 
