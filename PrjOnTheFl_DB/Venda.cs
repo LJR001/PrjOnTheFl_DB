@@ -129,29 +129,29 @@ namespace PrjOnTheFl_DB
                 switch (op)
                 {
                     case "V":
-                        string queryVendaUp = $"UPDATE PassagemVoo SET Situacao = '{op}',DataUltimaOp = '{DataVenda}'  WHERE ID = '{idPassagem}';";
+                        string queryVendaUp = $"UPDATE Passagem SET Situacao = '{op}',Data_Voo = '{DataVenda}'  WHERE IdPassagem = '{idPassagem}';";
                         conexaoBD.Update(queryVendaUp);
                         break;
 
                     case "R":
-                        string queryRegistra = $"UPDATE PassagemVoo SET Situacao = '{op}',DataUltimaOp = '{DataVenda}'  WHERE ID = '{idPassagem}';";
+                        string queryRegistra = $"UPDATE Passagem SET Situacao = '{op}',Data_Voo = '{DataVenda}'  WHERE IdPassagem = '{idPassagem}';";
                         conexaoBD.Update(queryRegistra);
                         break;
                 }
 
                 
-                string querydataaeronave = $"UPDATE Aeronave SET UltimaVenda = '{DataVenda}' WHERE Inscricao = '{aeronave}'";
+                string querydataaeronave = $"UPDATE Aeronave SET Ultima_Vendaa = '{DataVenda}' WHERE Inscricao = '{aeronave}'";
                 conexaoBD.Update(querydataaeronave);
 
                 ValorTotal += conexaoBD.BuscaValor(idPassagem);
                 item.GerarItem(ID, idPassagem);
             }
           
-            string querydataPassagem = $"UPDATE Passageiro SET UltimaCompra = '{DataVenda}' WHERE CPF = '{Passageiro}'";
+            string querydataPassagem = $"UPDATE Passageiro SET Data_Compra = '{DataVenda}' WHERE CPF = '{Passageiro}'";
             conexaoBD.Update(querydataPassagem);
 
         
-            string queryVenda = $"INSERT INTO Venda(ID, DataVenda, ValorTotal, FK_Passageiro_CPF) VALUES ({ID}, '{DataVenda}', {ValorTotal}, '{Passageiro}');";
+            string queryVenda = $"INSERT INTO Venda(ID, CPF, DataVenda, ValorTotal) VALUES ({ID}','{Passageiro}', '{DataVenda}', {ValorTotal});";
             conexaoBD.Update(queryVenda);
 
             Console.WriteLine("Passagens compradas/reservadas com sucesso");
@@ -159,6 +159,8 @@ namespace PrjOnTheFl_DB
 
         }
     
+
+
         public void ImprimeVendas()
         {
             int opc = 8;
