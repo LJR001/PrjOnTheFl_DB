@@ -456,6 +456,7 @@ namespace PrjOnTheFl_DB
                         Console.WriteLine("Restringir CPF");
                         Console.Clear();
                         rest.GerarMenu();
+
                         break;
 
                     case 2:
